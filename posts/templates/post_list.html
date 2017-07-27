@@ -1,13 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>List</title>
-</head>
-<body>
-<ol>
-{% for x in post_list%}
-	<a href="{% url 'detail' post_id=x.id %}"><li>{{x.title}}</li></a>
+{% extends "base.html" %}
+{% block head %} List {% endblock head%}
+
+
+{% block content %}
+
+<div class="row">
+{%for x in post_list %}
+	<div class="col-sm-6">
+	<div class="thumbnail">
+	{%if x.image %}
+		<img src="{{x.image.url}}" class="img-responsive">
+		{% endif %}
+	    <div class="caption">
+		        <h3>{{x.title}}<small>{{x.timestamp|timesince}} ago</small></h3>
+		        <p>{{x.content|linebreaks|truncatechars:10}}</p>
+		        <p>
+		        <a href="{{x.get_absolute_url}}" class="btn btn-primary" role="button">View</a>
+		        <a href="{% url 'posts:update' post_id=x.id %}" class="btn btn-success" role="button">Edit</a>
+		        <a href="{% url 'posts:delete' post_id=x.id %}" class="btn btn-danger" role="button">Delete</a>
+		        </p>
+	      	</div>
+	    </div>
+	</div>
 {% endfor %}
-</ol>
-</body>
-</html>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if post_list.has_previous %}
+            <a href="?page={{ post_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}
+        </span>
+
+        {% if post_list.has_next %}
+            <a href="?page={{ post_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

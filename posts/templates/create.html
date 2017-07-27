@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jvrocrnivnir</title>
+	<title>{{title}}</title>
+	<style>
+
+			h1{
+				color:red;
+			}
+
+			p{
+				color:blue;
+			}
+	</style>
 </head>
-<body>
-<h2>djoeijdoieqwjoiw</h2>
+	<body>
+		<h1>{{title}}</h1>
+		<p>{{content.title}}</p>
+		<p>{{content.content}}</p>
+		<p>{{content.timestamp}}</p>
+		<p>{{content.updated}}</p>
 
-<p>ejbeindiwdiuewiendiund iuwneiuwnd</p>
-
-</body>
+		<p>{{user}}</p>
+		<ol>
+	<li>one</li>
+	<li>two</li>
+		<li>two and a half</li>
+	</ol>
+	<p>{{random_numbers}}</p>
+		<ul>
+		{%for x in list%}
+		<li>{{x.title}}</li>
+		{%endfor%}
+	</ul>
+	</body>
 </html>
+

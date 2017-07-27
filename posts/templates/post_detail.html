@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Create Page</title>
-</head>
-<body>
-<ul>
+{% extends "base.html" %}
+{% block head %} Detail {% endblock head%}
+
+
+{% block content %}
+<ol>
 	<li>{{instance.id}}</li>
 	<li>{{instance.title}}</li>
 	<li>{{instance.content}}</li>
-<u/l>
+</ol>
 
-<a href="{% url 'list' %}"> Go back to list</a>
+<a href="{% url 'posts:list' %}"> Go back to list</a>
 
-</body>
-</html>
+{% endblock content %}
